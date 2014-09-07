@@ -1,0 +1,29 @@
+{
+  "name": "angular-form-elements",
+  "version": "0.1",
+  "authors": [
+    "edxe"
+  ],
+  "description": "form elements for easy handling with bootstrap and angularjs",
+  "main": "components",
+  "keywords": [
+    "angular",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "dist"
+  ],"dependencies":{
+    "angular": "latest",
+    "font-awesome": "latest",
+    "angular-bootstrap": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "jquery-maskedinput": "latest",
+    "angular-inputmask": "latest",
+    "angular-ui-utils": "latest"
+}
+}

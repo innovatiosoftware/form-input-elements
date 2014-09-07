@@ -1,0 +1,7 @@
+<div class="form-group col-sm-{{span||12}}" ng-class="{ 'has-error' : $invalid && !$pristine}" >
+    <i class="fa fa-asterisk required" ng-show="required"></i>&nbsp;<label for="{{id}}"  class="control-label" ng-bind="label" ng-show="label"></label>
+    <select id="{{id}}" class="form-control" ng-model="model" ng-options="p as p.text for p in options track by p.value">
+        <option value=""></option>
+    </select>
+    <div class="help" ng-show="footerText" ng-bind="footerText"></div>
+</div>

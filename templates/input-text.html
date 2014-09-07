@@ -1,0 +1,15 @@
+<div class="form-group col-sm-{{span||12}} " ng-class="{ 'has-error' : $invalid && !$pristine}">
+    <i class="fa fa-asterisk required" ng-show="required"></i>&nbsp;<label for="{{id}}" class="control-label" ng-bind="label" ng-show="label"></label>
+    <input type="{{type || text}}"   class="form-control input-sm " id="{{id}}" name="name"
+           placeholder="{{placeholder}}" ng-model="model"  ui-mask="{{mask}}">
+    <div class="help" ng-show="footerText" ng-bind="footerText"></div>
+</div>
+
+<!--
+ng-required="{ boolean }"
+ng-minlength="{ number }"
+ng-maxlength="{ number }"
+ng-pattern="{ string }"
+ng-change="{ string }"
+
+-->
