@@ -1,53 +1,10 @@
 'use strict';
 (function () {
-
+    var scripts = document.getElementsByTagName("script");
+    var currentScriptPath = scripts[scripts.length - 1].src;
     var app = angular.module('angularFormElements', [ 'ui.utils', 'ui.bootstrap', 'green.inputmask4angular']);
 
     var typeaheadExp = "item as item.field for item in items | filter:{field:$viewValue} | limitTo:{{limit||10}}";
-    app.directive('box', function ($log) {
-
-        return {
-            restrict: 'AE',
-            transclude: true,
-            scope: {
-                title: '@',
-                decorate: '@',
-                subTitle: '@',
-                footer: '@'
-            },
-            templateUrl: 'templates/box.html'
-        };
-    });
-
-
-    app.directive('windowBox', function ($log) {
-
-        return {
-            restrict: 'AE',
-            transclude: true,
-            scope: {
-                title: '@',
-                decorate: '@',
-                subTitle: '@',
-                collapse: '@'
-
-            },
-            templateUrl: 'templates/window-box.html'
-        };
-    });
-
-    app.directive('tileBox', function ($log) {
-        return {
-            restrict: 'AE',
-            transclude: true,
-            scope: {
-                title: '@',
-                decorate: '@',
-                subTitle: '@'
-            },
-            templateUrl: 'templates/tile-box.html'
-        };
-    });
 
     app.directive('inputDate', function ($log, $compile) {
         return {
@@ -60,7 +17,7 @@
                 required: '@',
                 footerText: '@'
             },
-            templateUrl: 'templates/input-date.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-date.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
@@ -92,7 +49,7 @@
 
             },
             required: '^form',
-            templateUrl: 'templates/input-text.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-text.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -126,7 +83,7 @@
 
             },
             required: ['model', '^form'],
-            templateUrl: 'templates/input-textarea.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-textarea.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -155,7 +112,7 @@
                 options: '='
             },
             required: ['model'],
-            templateUrl: 'templates/input-select.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-select.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("select"), attrs.model, attrs.max, attrs.required);
 
@@ -188,7 +145,7 @@
                 customTemplateUrl: "@"
             },
             required: ['model', '^form'],
-            templateUrl: 'templates/input-typeahead.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-typeahead.html'),
             compile: function compile(element, attrs) {
 
 
@@ -240,7 +197,7 @@
                 footerText: '@'
             },
             required: ['model', '^form'],
-            templateUrl: 'templates/input-radio.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-radio.html'),
             compile: function (element, attrs) {
                 element.find("input").removeAttr('ng-model');
                 element.find("input").attr('ng-model', attrs.model);
@@ -272,7 +229,7 @@
                 footerText: '@'
             },
             required: ['model', '^form'],
-            templateUrl: 'templates/input-check.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-check.html'),
             compile: function (element, attrs) {
                 element.find("input").removeAttr('ng-model');
                 element.find("input").attr('ng-model', attrs.model);
@@ -308,7 +265,7 @@
                 footerText: '@'
             },
             required: '^form',
-            templateUrl: 'templates/input-append.html',
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-append.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -332,24 +289,11 @@
                 buttonName: '@',
                 placeholder: '@'
             },
-            templateUrl: 'templates/input-search.html'
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-search.html')
         };
     });
 
-    app.directive('wizardBox', function () {
-        return {
-            restrict: 'AE',
-            transclude: true,
-            scope: {
-                wizardStepsElements: '=',
-                uiViewRef: '@',
-                title: '@'
-            },
-            templateUrl: 'templates/wizard.html'
-        };
-    });
-
-    app.directive('formLine', function () {
+   app.directive('formLine', function () {
         return {
             restrict: 'E',
             transclude: true,
@@ -358,119 +302,10 @@
                 offset: '@'
             },
 
-            templateUrl: 'templates/form-line.html'
+            templateUrl: currentScriptPath.replace('directives.js', 'templates/form-line.html')
         };
     });
 
-    app.directive('buttonsRadio', function () {
-        return {
-            restrict: 'E',
-            scope: {
-                model: '=',
-                options: '='
-            },
-            controller: function ($scope) {
-                $scope.activate = function (option) {
-                    $scope.model = option;
-                };
-            },
-            template: "<button type='button' class='btn btn-default' ng-class='{active: option == model}' " +
-                "ng-repeat='option in options' ng-click='activate(option)'>{{option}} </button>"
-
-        };
-    });
-
-
-    app.directive('wizardDone', function ($timeout) {
-
-
-        function markAsComplete(currentView) {
-            var go = true;
-            angular.forEach(angular.element('ul.wizard-steps li'), function (e) {
-                if (currentView.indexOf($(e).attr('ui-sref')) < 0 && go) {
-                    $(e).addClass("complete");
-                }
-                else {
-                    $(e).removeClass("complete");
-                    go = false;
-                }
-
-            });
-        }
-
-        return {
-            restrict: 'A',
-            controller: function ($scope, $state) {
-                $scope.$watch("ta", function (newValue, oldValue) {
-                    $timeout(function () {
-                        markAsComplete($state.$current.self.name);
-                    });
-                });
-                $scope.$on('$stateChangeSuccess', function (e, _2s) {
-                    markAsComplete(_2s.name);
-                });
-            }
-
-        };
-    });
-
-    app.directive('wizardNav', function ($compile, $state) {
-
-
-        return {
-            restrict: 'E',
-            scope: {
-                steps: '='
-            },
-            replace: true,
-            template: '<div class="btn-group " >' +
-                '<button type="submit" class="btn btn-default btn-flat" ng-click="prev()" >Anterior</button>' +
-                '<button type="submit" class="btn btn-default btn-flat" ng-click="next()" >Siguiente</button>' +
-                '</div>',
-            controller: function ($scope, $state) {
-
-                $scope.next = function () {
-                    var split = $state.$current.self.name.split(".");
-                    var base = split[0];
-                    var view = "." + split[1];
-                    var found = false;
-                    $scope.haveNext = true;
-                    angular.forEach($scope.steps, function (step) {
-                        if (found) {
-                            console.log("el proximo paso es :" + step.refView);
-                            $state.go(base + step.refView);
-                            found = false;
-                        }
-                        if (step.refView === view) {
-                            console.log("lo econte :" + step.refView);
-                            found = true;
-                        }
-                    });
-                    if (found) {
-                        $scope.haveNex = false;
-                    }
-                };
-
-                $scope.prev = function () {
-                    $scope.havePrev = true;
-                    var split = $state.$current.self.name.split(".");
-                    var base = split[0];
-                    var view = "." + split[1];
-                    var last = null;
-                    angular.forEach($scope.steps, function (step) {
-
-                        if (step.refView === view) {
-                            if (last != null)
-                                $state.go(base + last);
-                        }
-                        last = step.refView;
-                    });
-
-                };
-            }
-
-        };
-    });
 
 
     function addValidationWatch(scope, elementModelName) {
