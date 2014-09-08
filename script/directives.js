@@ -5,7 +5,6 @@
     var app = angular.module('angularFormElements', [ 'ui.utils', 'ui.bootstrap', 'green.inputmask4angular']);
 
     var typeaheadExp = "item as item.field for item in items | filter:{field:$viewValue} | limitTo:{{limit||10}}";
-
     app.directive('inputDate', function () {
         return {
             restrict: 'AE',

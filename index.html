@@ -6,6 +6,7 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- font Awesome -->
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="dist/styles/custom.css" rel="stylesheet" type="text/css"/>
 
 
 </head>
@@ -15,7 +16,7 @@
 
         <h3>Basic input text element</h3>
         <input-text footer-text="footer text" placeholder="placeholder" label="Element Text"
-                    model="test.inputText"></input-text>
+                    model="test.inputText" required="true"></input-text>
         <input-textarea model="test.textArea" label="Element Text Area" rows="3"></input-textarea>
         <input-date label="Element Date Fiels" model="test.id"></input-date>
         <input-select model="test.inputSelect" footer-text="the footer text" label="Element Option Select"
@@ -43,6 +44,7 @@
         <input-text span="2" label="Initial"></input-text>
         <input-text placeholder="name" span="3" label="Last Name"></input-text>
         <input-text placeholder="name" span="3" label="Second last Name"></input-text>
+
         <input-radio
                 items="[{value:'1',text:'Male',iconClass:'fa fa-male'},{value:'2',text:'Female',iconClass:'fa fa-female'}]"
                 label="Gender" model="test.gender"></input-radio>
