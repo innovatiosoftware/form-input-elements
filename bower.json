@@ -1,22 +1,23 @@
 {
-  "name": "angular-form-elements",
-  "version": "0.1",
-  "authors": [
-    "edxe"
-  ],
-  "description": "form elements for easy handling with bootstrap and angularjs",
-  "main": "components",
-  "keywords": [
-    "angular",
-    "bootstrap"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "lib",
-    "dist"
-  ],"dependencies":{
+    "name": "angular-form-elements",
+    "version": "1.0.0",
+    "authors": [
+        "edxe"
+    ],
+    "description": "form elements for easy handling with bootstrap and angularjs",
+    "main": "components",
+    "keywords": [
+        "angular",
+        "bootstrap"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/innovatiosoftware/form-input-elements",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "lib",
+        "dist"
+    ], "dependencies": {
     "angular": "latest",
     "font-awesome": "latest",
     "angular-bootstrap": "latest",
