@@ -1,7 +1,14 @@
 form-input-elements
 ===================
 
-quick start form elements 
+Angular directives  with __Bootstrap__ for quick form creation.
 
-#### Testing it
+#### Requirements
+
+* npm
+* Bower
+* Gulp 
+
+#### Building it
+    
     npm install

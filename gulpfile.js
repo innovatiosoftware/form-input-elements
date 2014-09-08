@@ -4,8 +4,7 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    htmlmin = require('gulp-htmlmin'),
-    cssmin = require('gulp-cssmin');
+    htmlmin = require('gulp-htmlmin');
 
 var paths = {
     scripts: ['script/*.js', '!gulpfile.js'],

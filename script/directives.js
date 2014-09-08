@@ -6,7 +6,7 @@
 
     var typeaheadExp = "item as item.field for item in items | filter:{field:$viewValue} | limitTo:{{limit||10}}";
 
-    app.directive('inputDate', function ($log, $compile) {
+    app.directive('inputDate', function () {
         return {
             restrict: 'AE',
             scope: {
@@ -17,7 +17,7 @@
                 required: '@',
                 footerText: '@'
             },
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-date.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-date.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
@@ -32,7 +32,7 @@
     });
 
 
-    app.directive('inputText', function ($log, $compile) {
+    app.directive('inputText', function () {
         return {
             restrict: 'E',
             scope: {
@@ -49,7 +49,7 @@
 
             },
             required: '^form',
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-text.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-text.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -64,7 +64,7 @@
         };
     });
 
-    app.directive('inputTextarea', function ($log, $compile) {
+    app.directive('inputTextarea', function () {
         return {
             restrict: 'E',
             scope: {
@@ -83,7 +83,7 @@
 
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-textarea.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-textarea.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -98,7 +98,7 @@
         };
     });
 
-    app.directive('inputSelect', function ($log) {
+    app.directive('inputSelect', function () {
         return {
             restrict: 'E',
             scope: {
@@ -112,7 +112,7 @@
                 options: '='
             },
             required: ['model'],
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-select.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-select.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("select"), attrs.model, attrs.max, attrs.required);
 
@@ -125,7 +125,7 @@
             }
         };
     });
-    app.directive('inputTypeahead', function ($log, $compile, $rootScope) {
+    app.directive('inputTypeahead', function () {
 
         return {
             restrict: 'E',
@@ -145,7 +145,7 @@
                 customTemplateUrl: "@"
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-typeahead.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-typeahead.html'),
             compile: function compile(element, attrs) {
 
 
@@ -155,26 +155,23 @@
                     element.find('input').attr("typeahead", result);
                 }
                 if (attrs.onSelect) {
-                    $log.info("adding on select function to type ahead field " + attrs.onSelect);
                     element.removeAttr("typeahead-On-Select");   // typeahead-On-Select="addressSelected($item, $model, $label)"
                     element.find('input').attr("typeahead-On-Select", attrs.onSelect);
                 }
 
                 if (attrs.typeaheadExp) {
-                    $log.info("adding expression to typeahead field :" + attrs.typeaheadExp);
                     element.find('input').removeAttr('typeahead');
                     element.find('input').attr("typeahead", attrs.typeaheadExp);
                 }
 
                 if (attrs.customTemplateUrl) {
-                    $log.info("adding customTemplateUrl to typeahead field :" + attrs.customTemplateUrl);
                     element.find('input').removeAttr('typeahead-template-url');
                     element.find('input').attr('typeahead-template-url', attrs.customTemplateUrl);
                 }
 
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
-                return function (scope, element, attrs, ngModelController) {
+                return function (scope, element, attrs) {
                     scope.modelName = attrs.model;
                     if (attrs.required) {
                         addValidationWatch(scope, attrs.model);
@@ -185,7 +182,7 @@
         };
     });
 
-    app.directive('inputRadio', function ($log) {
+    app.directive('inputRadio', function () {
         return {
             restrict: 'E',
             scope: {
@@ -197,7 +194,7 @@
                 footerText: '@'
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-radio.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-radio.html'),
             compile: function (element, attrs) {
                 element.find("input").removeAttr('ng-model');
                 element.find("input").attr('ng-model', attrs.model);
@@ -217,7 +214,7 @@
 
     });
 
-    app.directive('inputCheck', function ($log) {
+    app.directive('inputCheck', function () {
         return {
             restrict: 'E',
             scope: {
@@ -229,7 +226,7 @@
                 footerText: '@'
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-check.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-check.html'),
             compile: function (element, attrs) {
                 element.find("input").removeAttr('ng-model');
                 element.find("input").attr('ng-model', attrs.model);
@@ -247,7 +244,7 @@
         };
     });
 
-    app.directive('inputAppend', function ($log) {
+    app.directive('inputAppend', function () {
         return {
             restrict: 'AE',
             scope: {
@@ -265,7 +262,7 @@
                 footerText: '@'
             },
             required: '^form',
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-append.html'),
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-append.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -279,7 +276,7 @@
         };
     });
 
-    app.directive('inputSearch', function ($log) {
+    app.directive('inputSearch', function () {
         return {
             restrict: 'AE',
             scope: {
@@ -289,7 +286,7 @@
                 buttonName: '@',
                 placeholder: '@'
             },
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/input-search.html')
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-search.html')
         };
     });
 
@@ -302,7 +299,7 @@
                 offset: '@'
             },
 
-            templateUrl: currentScriptPath.replace('directives.js', 'templates/form-line.html')
+            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/form-line.html')
         };
     });
 

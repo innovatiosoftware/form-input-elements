@@ -11,33 +11,64 @@
 </head>
 <body ng-controller="MainController">
 <ng-form name="form">
-    <form-line span="6" offset="1">
+    <form-line span="4" offset="1">
 
         <h3>Basic input text element</h3>
         <input-text footer-text="footer text" placeholder="placeholder" label="Element Text"
                     model="test.inputText"></input-text>
         <input-textarea model="test.textArea" label="Element Text Area" rows="3"></input-textarea>
         <input-date label="Element Date Fiels" model="test.id"></input-date>
-        <input-select model="test.inputSelect" footer-text="the footer text" label="Element Option Select" options="[{value:'1',text:'select element'}]"
+        <input-select model="test.inputSelect" footer-text="the footer text" label="Element Option Select"
+                      options="[{value:'1',text:'select element'}]"
                       placeholder="placeholder"></input-select>
-        <input-append placeholder="placeholder" label="Element Input Append" append-icon-left="fa fa-users"  append-text-right="text on right"
+        <input-append placeholder="placeholder" label="Element Input Append" append-icon-left="fa fa-users"
+                      append-text-right="text on right"
                       type="email" model="test.inputAppend"
                       footer-text="footer text"></input-append>
+        <input-typeahead model="test.inputTypeahead" footer-text="footer text"
+                         items="[{name:'innovatio'},{name:'software'},{name:'Edrick'},{name:'ortiz'}]"
+                         object-field="name" label="Element Type Ahead" placeholder="placeholder"></input-typeahead>
         <input-radio footer-text="footer text"
                      items="[{value:'1',text:'radio element 1'},{value:'2',text:'radio element 2'}]"
                      label="Element Radio" model="test.inputRadio"></input-radio>
-        <input-check label="Element Check" items="[{value:'1',text:'check element 1'},{value:'2',text:'check element 2'}]" footer-text="footer text" model="test.inputCheck"></input-check>
-        <input-typeahead model="test.inputTypeahead" footer-text="footer text" items="[{name:'innovatio'},{name:'software'},{name:'Edrick'},{name:'ortiz'}]" object-field="name" label="Element Type Ahead" placeholder="placeholder"></input-typeahead>
+        <input-check label="Element Check"
+                     items="[{value:'1',text:'check element 1'},{value:'2',text:'check element 2'}]"
+                     footer-text="footer text" model="test.inputCheck"></input-check>
+
 
     </form-line>
-    <form-line span="5">
-        <h3>Form Values</h3>
-        <!--<div class="well well-lg">-->
+    <form-line span="7">
+        <h3>Simple Form </h3>
+        <input-text placeholder="name" span="3" label="Name"></input-text>
+        <input-text span="2" label="Initial"></input-text>
+        <input-text placeholder="name" span="3" label="Last Name"></input-text>
+        <input-text placeholder="name" span="3" label="Second last Name"></input-text>
+        <input-radio
+                items="[{value:'1',text:'Male',iconClass:'fa fa-male'},{value:'2',text:'Female',iconClass:'fa fa-female'}]"
+                label="Gender" model="test.gender"></input-radio>
+        <form-line>
+            <input-text placeholder="line 1" label="Line 1" span="5"
+                        model="test.inputLine1"></input-text>
+        </form-line>
+        <form-line>
+            <input-text placeholder="line 1" label="Line 1" span="5"
+                        model="test.inputLine1"></input-text>
+        </form-line>
+        <input-typeahead model="test.state" show-icon="true"
+                         items="[{name:'PR'},{name:'FL'},{name:'NY'},{name:'SF'}]"
+                         object-field="name" label="State" span="1"></input-typeahead>
+        <input-text placeholder="City" label="City" span="2"
+                    model="test.inputLine1"></input-text>
+        <input-text placeholder="zip " label="Zip Code" span="2"
+                    model="test.inputLine1"></input-text>
+
+
+    </form-line>
+    <form-line>
         <code>
             {{test}}
         </code>
     </form-line>
-
 </ng-form>
 
 <!-- build:app js/app.js -->
@@ -65,6 +96,7 @@
 
 
 </script>
-<script src="script/directives.js" type="text/javascript"></script>
+<!--<script src="script/directives.js" type="text/javascript"></script>-->
+<script src="dist/script/directives.js" type="text/javascript"></script>
 </body>
 </html>
