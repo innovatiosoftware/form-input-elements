@@ -6,44 +6,52 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- font Awesome -->
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="dist/styles/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="styles/custom.css" rel="stylesheet" type="text/css"/>
 
 
 </head>
 <body ng-controller="MainController">
-<ng-form name="form">
-    <form-line span="4" offset="1">
 
-        <h3>Basic input text element</h3>
-        <input-text footer-text="footer text" placeholder="placeholder" label="Element Text"
-                    model="test.inputText" required="true"></input-text>
-        <input-textarea model="test.textArea" label="Element Text Area" rows="3"></input-textarea>
-        <input-date label="Element Date Fiels" model="test.id"></input-date>
-        <input-select model="test.inputSelect" footer-text="the footer text" label="Element Option Select"
-                      options="[{value:'1',text:'select element'}]"
-                      placeholder="placeholder"></input-select>
-        <input-append placeholder="placeholder" label="Element Input Append" append-icon-left="fa fa-users"
-                      append-text-right="text on right"
-                      type="email" model="test.inputAppend"
-                      footer-text="footer text"></input-append>
-        <input-typeahead model="test.inputTypeahead" footer-text="footer text"
-                         items="[{name:'innovatio'},{name:'software'},{name:'Edrick'},{name:'ortiz'}]"
-                         object-field="name" label="Element Type Ahead" placeholder="placeholder"></input-typeahead>
-        <input-radio footer-text="footer text"
-                     items="[{value:'1',text:'radio element 1'},{value:'2',text:'radio element 2'}]"
-                     label="Element Radio" model="test.inputRadio"></input-radio>
-        <input-check label="Element Check"
-                     items="[{value:'1',text:'check element 1'},{value:'2',text:'check element 2'}]"
-                     footer-text="footer text" model="test.inputCheck"></input-check>
+<form-line span="4" offset="1">
 
-
-    </form-line>
-    <form-line span="7">
+    <h3>Basic input text element</h3>
+    <input-text footer-text="footer text" placeholder="placeholder" label="Element Text"
+                model="test.inputText" required="true"></input-text>
+    <input-textarea model="test.textArea" label="Element Text Area" rows="3"></input-textarea>
+    <input-date label="Element Date Files" model="test.id"></input-date>
+    <input-select model="test.inputSelect" footer-text="the footer text" label="Element Option Select"
+                  options="[{value:'1',text:'select element'}]"
+                  placeholder="placeholder"></input-select>
+    <input-append placeholder="placeholder" label="Element Input Append" append-icon-left="fa fa-users"
+                  append-text-right="text on right"
+                  type="email" model="test.inputAppend"
+                  footer-text="footer text"></input-append>
+    <input-typeahead model="test.inputTypeahead" footer-text="footer text"
+                     items="[{name:'innovatio'},{name:'software'},{name:'Edrick'},{name:'ortiz'}]"
+                     object-field="name" label="Element Type Ahead" placeholder="placeholder"></input-typeahead>
+    <input-radio footer-text="footer text"
+                 items="[{value:'1',text:'radio element 1'},{value:'2',text:'radio element 2'}]"
+                 label="Element Radio" model="test.inputRadio"></input-radio>
+    <input-check label="Element Check" id="check"
+                 model="test.inputCheck" check-label="Active"
+                 footer-text="footer text"></input-check>
+    <div class="col-sm-12">
+        <label class="radio-inline">
+            <input type="radio" value="1" ng-model="test.radio">
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="2" ng-model="test.radio">
+        </label>
+    </div>
+</form-line>
+<form-line span="7">
+    <ng-form name="magic-form">
         <h3>Simple Form </h3>
-        <input-text placeholder="name" span="3" label="Name"></input-text>
-        <input-text span="2" label="Initial"></input-text>
-        <input-text placeholder="name" span="3" label="Last Name"></input-text>
-        <input-text placeholder="name" span="3" label="Second last Name"></input-text>
+        <input-text placeholder="name" span="3" label="Name" required="true" model="test.name"></input-text>
+        <input-text span="2" label="Initial" model="test.initial"></input-text>
+        <input-text placeholder="name" span="3" label="Last Name" required="true" model="test.lastName"></input-text>
+        <input-text placeholder="name" span="3" label="Second last Name" required="true"
+                    model="test.secondLastName"></input-text>
 
         <input-radio
                 items="[{value:'1',text:'Male',iconClass:'fa fa-male'},{value:'2',text:'Female',iconClass:'fa fa-female'}]"
@@ -63,15 +71,19 @@
                     model="test.inputLine1"></input-text>
         <input-text placeholder="zip " label="Zip Code" span="2"
                     model="test.inputLine1"></input-text>
+        <form-line>
+            <input-text placeholder="you@mail.com" label="E-mail" span="3"
+                        model="test.email" type="email"></input-text>
+        </form-line>
 
+    </ng-form>
+</form-line>
+<form-line>
+    <code>
+        {{test}}
+    </code>
+</form-line>
 
-    </form-line>
-    <form-line>
-        <code>
-            {{test}}
-        </code>
-    </form-line>
-</ng-form>
 
 <!-- build:app js/app.js -->
 <script src="lib/jquery/dist/jquery.min.js"></script>
@@ -98,7 +110,7 @@
 
 
 </script>
-<!--<script src="script/directives.js" type="text/javascript"></script>-->
-<script src="dist/script/directives.js" type="text/javascript"></script>
+<script src="script/directives.js" type="text/javascript"></script>
+<!--<script src="dist/script/directives.js" type="text/javascript"></script>-->
 </body>
 </html>

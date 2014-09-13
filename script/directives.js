@@ -47,9 +47,26 @@
                 mask: '@'
 
             },
-            required: '^form',
+            multiElement: true,
+            required: ['?^form', '?model'],
             templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-text.html'),
             compile: function (element, attrs) {
+
+
+                /*      return {
+                 pre: function preLink(scope, iElement, iAttrs, controller) {
+                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
+                 scope.modelName = attrs.model;
+                 if (scope.max || attrs.required) {
+                 addValidationWatch(scope, attrs.model);
+                 }
+                 console.log(element.parent())
+                 },
+                 post: function postLink(scope, iElement, iAttrs, controller) {
+                 }
+                 };*/
+
+//                console.log($("form"));
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
                 return function (scope, element, attrs, ngModelController) {
@@ -81,12 +98,12 @@
 
 
             },
-            required: ['model', '^form'],
+            required: ['?model', '^form'],
             templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-textarea.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
-                return function (scope, element, attrs, ngModelController) {
+                return function (scope, element, attrs) {
                     scope.modelName = attrs.model;
                     if (scope.max || attrs.required) {
                         addValidationWatch(scope, attrs.model);
@@ -195,12 +212,12 @@
             required: ['model', '^form'],
             templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-radio.html'),
             compile: function (element, attrs) {
-                element.find("input").removeAttr('ng-model');
-                element.find("input").attr('ng-model', attrs.model);
+//                element.find("input").removeAttr('ng-model');
+//                element.find("input").attr('ng-model', attrs.model);
 
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
-                return function (scope, element, attrs, ngModelController) {
+                return function (scope, element, attrs) {
                     scope.modelName = attrs.model;
                     if (attrs.required) {
                         addValidationWatch(scope, attrs.model);
@@ -219,6 +236,7 @@
             scope: {
                 label: '@',
                 model: '=',
+                checkLabel: '@',
                 span: '@',
                 required: '@',
                 items: '=',
@@ -227,12 +245,9 @@
             required: ['model', '^form'],
             templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-check.html'),
             compile: function (element, attrs) {
-                element.find("input").removeAttr('ng-model');
-                element.find("input").attr('ng-model', attrs.model);
-
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
-                return function (scope, element, attrs, ngModelController) {
+                return function (scope, element, attrs) {
                     scope.modelName = attrs.model;
                     if (attrs.required) {
                         addValidationWatch(scope, attrs.model);
@@ -257,10 +272,10 @@
                 label: '@',
                 model: '=',
                 required: '@',
-                mask:"@",
+                mask: "@",
                 footerText: '@'
             },
-            required: '^form',
+            required: ['?model','^form'],
             templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-append.html'),
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
@@ -289,7 +304,7 @@
         };
     });
 
-   app.directive('formLine', function () {
+    app.directive('formLine', function () {
         return {
             restrict: 'E',
             transclude: true,
@@ -301,7 +316,6 @@
             templateUrl: currentScriptPath.replace('script/directives.js', 'templates/form-line.html')
         };
     });
-
 
 
     function addValidationWatch(scope, elementModelName) {

@@ -2,3 +2,12 @@ i.required {
     font-size: 10px;
     color: #a94442;
 }
+
+i.typeahead-input {
+    color: #cacaca;
+    position: absolute;
+    top: 33px;
+    float: right;
+    right: 18px;
+}
+

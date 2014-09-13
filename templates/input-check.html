@@ -4,8 +4,8 @@
                                                                            ng-bind="label"></label>
         </span>
     <div class="col-sm-12">
-        <label class="checkbox-inline" ng-repeat="r in items">
-            <input type="checkbox" ng-model="model" ng-checked="model" >&nbsp;&nbsp;{{r.text}}
+        <label class="checkbox-inline" >
+            <input type="checkbox" ng-model="model" id="{{id}}" name="name" >&nbsp;&nbsp;{{checkLabel}}
         </label>
     </div>
     <div class="help" ng-show="footerText" ng-bind="footerText"></div>
