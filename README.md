@@ -21,5 +21,5 @@ Angular directives  with __Bootstrap__ for quick form creation.
     
 * Include the component library somewhere after the angular declaration
  
-    <script src="dist/script/directives.js" type="text/javascript"></script>
+    <script src="dist/script/angularFormElements.js" type="text/javascript"></script>
     

@@ -45,7 +45,7 @@
     </div>
 </form-line>
 <form-line span="7">
-    <ng-form name="magic-form">
+    <ng-form name="form">
         <h3>Simple Form </h3>
         <input-text placeholder="name" span="3" label="Name" required="true" model="test.name"></input-text>
         <input-text span="2" label="Initial" model="test.initial"></input-text>
@@ -74,6 +74,24 @@
         <form-line>
             <input-text placeholder="you@mail.com" label="E-mail" span="3"
                         model="test.email" type="email"></input-text>
+        </form-line>
+        <form-line>
+            <input-text placeholder="" label="Your IP" span="3" mask="ip"
+                        model="test.email" type="email"></input-text>
+
+            <input  type="text" class="form-control input-sm" input-mask="'alias': 'ip'">
+            <input type="text" class="form-control" data-inputmask="'alias': 'ip'" data-mask="">
+        </form-line>
+        <form-line>
+            <input-text placeholder="Password" label="Password" span="6"
+                        required="true"
+                        model="test.pwd"></input-text>
+            <input-text placeholder="Password" label="Confirm Password" span="6" el-ui-validate="valSomething($value)"
+
+                        model="test.cpwd"></input-text>
+            <span ng-show='form.testCpwd.$error.validator'>Passwords do not match!</span>
+            <br>is form valid: {{form.$valid}}
+            <br>password errors: {{form.testCpwd.$error | json}}
         </form-line>
 
     </ng-form>
@@ -105,12 +123,18 @@
                 .controller('MainController', function ($scope) {
                     console.log('MainController');
                     $scope.test = {};
+                    $scope.valSomething = function(v){
+                        console.log(v);
+                        return false;
+                    }
                 });
+
+
     })();
 
 
 </script>
-<script src="script/directives.js" type="text/javascript"></script>
-<!--<script src="dist/script/directives.js" type="text/javascript"></script>-->
+<!--<script src="script/angularFormElements.js" type="text/javascript"></script>-->
+<script src="dist/script/angularFormElements.min.js" type="text/javascript"></script>
 </body>
 </html>

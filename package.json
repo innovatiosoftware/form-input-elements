@@ -7,7 +7,11 @@
     "gulp": "~3.8.7",
     "gulp-uglify": "~0.3.1",
     "gulp-concat": "~2.3.4",
-    "gulp-cssmin": "~0.1.6"
+    "gulp-cssmin": "~0.1.6",
+    "grunt-angular-templates": "~0.5.7",
+    "gulp-angular-templates": "0.0.1",
+    "streamqueue": "~0.1.1",
+    "gulp-rename": "~1.2.0"
   },
   "engines": {
     "node": ">=0.8.0"

@@ -1,7 +1,5 @@
 'use strict';
 (function () {
-    var scripts = document.getElementsByTagName("script");
-    var currentScriptPath = scripts[scripts.length - 1].src;
     var app = angular.module('angularFormElements', [ 'ui.utils', 'ui.bootstrap', 'green.inputmask4angular']);
 
     var typeaheadExp = "item as item.field for item in items | filter:{field:$viewValue} | limitTo:{{limit||10}}";
@@ -16,7 +14,7 @@
                 required: '@',
                 footerText: '@'
             },
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-date.html'),
+            templateUrl: 'templates/input-date.html',
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
@@ -46,29 +44,26 @@
                 model: '=',
                 mask: '@'
 
+
             },
             multiElement: true,
             required: ['?^form', '?model'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-text.html'),
+            templateUrl:  'templates/input-text.html',
             compile: function (element, attrs) {
+                var input = element.find("input");
+                /*angular.forEach(attrs, function (attrVal,attrKey) {
+                    if (attrKey.search("^el") >= 0) {
+                        var attr = camelToDash(attrKey.substr(2));
+                        input.removeAttr(attr);
+                        input.attr(attr, attrVal);
+                    }
+                });*/
 
 
-                /*      return {
-                 pre: function preLink(scope, iElement, iAttrs, controller) {
-                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
-                 scope.modelName = attrs.model;
-                 if (scope.max || attrs.required) {
-                 addValidationWatch(scope, attrs.model);
-                 }
-                 console.log(element.parent())
-                 },
-                 post: function postLink(scope, iElement, iAttrs, controller) {
-                 }
-                 };*/
-
-//                console.log($("form"));
-                bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
-
+//
+                bindValidationAttributes(input, attrs.model, attrs.max, attrs.required);
+//                ui-validate=" '$value==password' "
+//                ui-validate-watch=" 'password' "
                 return function (scope, element, attrs, ngModelController) {
                     scope.modelName = attrs.model;
                     if (scope.max || attrs.required) {
@@ -99,7 +94,7 @@
 
             },
             required: ['?model', '^form'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-textarea.html'),
+            templateUrl: 'templates/input-textarea.html',
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -128,7 +123,7 @@
                 options: '='
             },
             required: ['model'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-select.html'),
+            templateUrl: 'templates/input-select.html',
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("select"), attrs.model, attrs.max, attrs.required);
 
@@ -161,7 +156,7 @@
                 customTemplateUrl: "@"
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-typeahead.html'),
+            templateUrl: 'templates/input-typeahead.html',
             compile: function compile(element, attrs) {
 
 
@@ -210,7 +205,7 @@
                 footerText: '@'
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-radio.html'),
+            templateUrl:  'templates/input-radio.html',
             compile: function (element, attrs) {
 //                element.find("input").removeAttr('ng-model');
 //                element.find("input").attr('ng-model', attrs.model);
@@ -243,7 +238,7 @@
                 footerText: '@'
             },
             required: ['model', '^form'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-check.html'),
+            templateUrl:  'templates/input-check.html',
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, null, attrs.required);
 
@@ -275,8 +270,8 @@
                 mask: "@",
                 footerText: '@'
             },
-            required: ['?model','^form'],
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-append.html'),
+            required: ['?model', '^form'],
+            templateUrl:  'templates/input-append.html',
             compile: function (element, attrs) {
                 bindValidationAttributes(element.find("input"), attrs.model, attrs.max, attrs.required);
 
@@ -300,7 +295,7 @@
                 buttonName: '@',
                 placeholder: '@'
             },
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/input-search.html')
+            templateUrl:  'templates/input-search.html'
         };
     });
 
@@ -313,7 +308,7 @@
                 offset: '@'
             },
 
-            templateUrl: currentScriptPath.replace('script/directives.js', 'templates/form-line.html')
+            templateUrl:  'templates/form-line.html'
         };
     });
 
@@ -332,8 +327,9 @@
     }
 
     function bindValidationAttributes(element, modelName, max, required) {
+
         element.removeAttr('name');
-        element.attr('name', modelName);
+        element.attr('name', dotToCamel(modelName));
 
         if (max) {
             element.removeAttr('maxlength');
@@ -345,6 +341,18 @@
         }
 
     };
+
+    function camelToDash(str) {
+        return str.replace(/\W+/g, '-')
+            .replace(/([a-z\d])([A-Z])/g, '$1-$2').toLowerCase();
+    }
+
+    function dotToCamel(str) {
+        return str.replace(/\W+(.)/g, function (x, chr) {
+            return chr.toUpperCase();
+        })
+    }
+
 
 
 })();
